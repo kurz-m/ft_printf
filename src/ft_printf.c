@@ -6,7 +6,7 @@
 /*   By: makurz <makurz@student.42heilbronn.de>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/02 16:36:53 by makurz            #+#    #+#             */
-/*   Updated: 2023/04/02 19:51:04 by makurz           ###   ########.fr       */
+/*   Updated: 2023/04/02 21:20:21 by makurz           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,7 +61,7 @@ int	ft_printf(const char *s, ...)
 
 int	main(void)
 {
-	ft_printf("Hello %x", 16);
+	ft_printf("Hello %x", 1000);
 	return (0);
 }
 

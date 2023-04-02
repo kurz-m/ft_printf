@@ -6,7 +6,7 @@
 /*   By: makurz <makurz@student.42heilbronn.de>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/02 03:24:00 by makurz            #+#    #+#             */
-/*   Updated: 2023/04/02 19:52:25 by makurz           ###   ########.fr       */
+/*   Updated: 2023/04/02 21:17:29 by makurz           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,8 +38,6 @@ int	ft_putstr(char *s)
 
 int	ft_putnbr_base(long nb, size_t base, char c, int count)
 {
-	printf("#number: %ld\n", nb);
-	fflush(stdout);
 	if (nb < 0)
 	{
 		count += ft_putchar('-');
@@ -54,9 +52,9 @@ int	ft_putnbr_base(long nb, size_t base, char c, int count)
 		ft_putnbr_base(nb / base, base, c, count);
 		ft_putnbr_base(nb % base, base, c, count);
 	}
-	if (nb < 10)
+	else if (nb < 10)
 		count += ft_putchar(nb + 48);
 	else
-		count += ft_putchar(nb + c);
+		count += ft_putchar(nb + c - 10);
 	return (count);
 }
