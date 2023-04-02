@@ -6,7 +6,7 @@
 /*   By: makurz <makurz@student.42heilbronn.de>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/02 16:45:06 by makurz            #+#    #+#             */
-/*   Updated: 2023/04/02 17:13:00 by makurz           ###   ########.fr       */
+/*   Updated: 2023/04/02 17:42:40 by makurz           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,5 +22,6 @@
 int	ft_putchar(char c);
 int	ft_putstr(char *s);
 size_t	ft_strlen(const char *s);
+int	ft_putnbr_base(long nb, size_t base, char c, int count);
 
 #endif
