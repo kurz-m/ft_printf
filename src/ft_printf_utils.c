@@ -6,14 +6,16 @@
 /*   By: makurz <makurz@student.42heilbronn.de>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/02 03:24:00 by makurz            #+#    #+#             */
-/*   Updated: 2023/04/02 03:39:39 by makurz           ###   ########.fr       */
+/*   Updated: 2023/04/02 17:23:18 by makurz           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
-#include <unistd.h>
+#include "../include/ft_printf.h"
+#include <stddef.h>
 
-static int	ft_putchar(char c)
+size_t
+
+int	ft_putchar(char c)
 {
 	write(1, &c, 1);
 	return (1);
