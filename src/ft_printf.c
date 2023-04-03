@@ -6,62 +6,48 @@
 /*   By: makurz <makurz@student.42heilbronn.de>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/02 16:36:53 by makurz            #+#    #+#             */
-/*   Updated: 2023/04/02 21:20:21 by makurz           ###   ########.fr       */
+/*   Updated: 2023/04/03 17:02:35 by makurz           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../include/ft_printf.h"
-#include <stdarg.h>
-#include <stdio.h>
+#include "ft_printf.h"
 
-int	ft_parse_specifier(char c, va_list args)
+void	ft_parse_specifier(char c, va_list args, int *printed)
 {
-	int		printed;
-
-	printed = 0;
 	if (c == 'c')
-		printed = ft_putchar(va_arg(args, int));
+		ft_putchar(va_arg(args, int), printed);
 	else if (c == 's')
-		printed = ft_putstr(va_arg(args, char *));
+		ft_putstr(va_arg(args, char *), printed);
 	else if (c == 'p')
-		printed = ft_putnbr_base(va_arg(args, size_t), 10, c, printed);
+		ft_putptr(va_arg(args, void *), printed);
 	else if (c == 'i' || c == 'd')
-		printed = ft_putnbr_base(va_arg(args, long), 10, c, printed);
+		ft_putnbr_base((long) va_arg(args, int), 10, c, printed);
 	else if (c == 'u')
-		printed = ft_putnbr_base(va_arg(args, unsigned int), 10, c, printed);
+		ft_putnbr_base((long) va_arg(args, unsigned int), 10, c, printed);
 	else if (c == 'x' || c == 'X')
-		printed = ft_putnbr_base(va_arg(args, unsigned int), 16, c, printed);
+		ft_putnbr_base(va_arg(args, unsigned int), 16, c, printed);
 	else if (c == '%')
-		printed = ft_putchar('%');
-	return (printed);
+		ft_putchar('%', printed);
 }
 
 int	ft_printf(const char *s, ...)
 {
-	int			printed;
-	int			i;
-	va_list		args;
+	int		printed;
+	int		i;
+	va_list	args;
 
 	printed = 0;
 	i = -1;
 	va_start(args, s);
 	if (!s)
 		return (0);
-	while (s[++i] != '\0')
+	while (s[++i])
 	{
 		if (s[i] != '%')
-			printed += ft_putchar(s[i]);
+			ft_putchar(s[i], &printed);
 		else if (s[i++] == '%')
-			printed += ft_parse_specifier(s[i++], args);
+			ft_parse_specifier(s[i], args, &printed);
 	}
 	va_end(args);
-	// printf("#number: %i\n", printed);
 	return (printed);
 }
-
-int	main(void)
-{
-	ft_printf("Hello %x", 1000);
-	return (0);
-}
-

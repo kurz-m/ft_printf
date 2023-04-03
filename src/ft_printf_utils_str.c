@@ -1,18 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_printf_utils.c                                  :+:      :+:    :+:   */
+/*   ft_printf_utils_str.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: makurz <makurz@student.42heilbronn.de>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/02 03:24:00 by makurz            #+#    #+#             */
-/*   Updated: 2023/04/02 21:17:29 by makurz           ###   ########.fr       */
+/*   Updated: 2023/04/03 15:51:31 by makurz           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../include/ft_printf.h"
-#include <stddef.h>
-#include <stdio.h>
+#include "ft_printf.h"
 
 size_t	ft_strlen(const char *s)
 {
@@ -24,37 +22,22 @@ size_t	ft_strlen(const char *s)
 	return (i);
 }
 
-int	ft_putchar(char c)
+void	ft_putchar(char c, int *printed)
 {
 	write(1, &c, 1);
-	return (1);
+	(*printed)++;
 }
 
-int	ft_putstr(char *s)
+void	ft_putstr(char *s, int *printed)
 {
-	write(1, s, ft_strlen(s));
-	return (ft_strlen(s));
-}
-
-int	ft_putnbr_base(long nb, size_t base, char c, int count)
-{
-	if (nb < 0)
+	if (s == NULL)
 	{
-		count += ft_putchar('-');
-		nb *= -1;
+		write(1, "(null)", 6);
+		(*printed) += 6;
 	}
-	if (c == 'p' || c == 'x')
-		c = 'a';
-	else if (c == 'X')
-		c = 'A';
-	if (nb > base)
-	{
-		ft_putnbr_base(nb / base, base, c, count);
-		ft_putnbr_base(nb % base, base, c, count);
-	}
-	else if (nb < 10)
-		count += ft_putchar(nb + 48);
 	else
-		count += ft_putchar(nb + c - 10);
-	return (count);
+	{
+		write(1, s, ft_strlen(s));
+		(*printed) += ft_strlen(s);
+	}
 }
