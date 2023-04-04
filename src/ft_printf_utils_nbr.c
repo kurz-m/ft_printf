@@ -6,11 +6,11 @@
 /*   By: makurz <makurz@student.42heilbronn.de>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/02 03:24:00 by makurz            #+#    #+#             */
-/*   Updated: 2023/04/03 15:58:17 by makurz           ###   ########.fr       */
+/*   Updated: 2023/04/04 08:20:14 by makurz           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_printf.h"
+#include "../include/ft_printf.h"
 
 void	ft_putnbr_base(long nb, int base, char c, int *printed)
 {
@@ -42,8 +42,8 @@ void	ft_putnbr_hex(size_t nb, size_t base, char c, int *printed)
 		c = 'A';
 	if (nb >= base)
 	{
-		ft_putnbr_base(nb / base, base, c, printed);
-		ft_putnbr_base(nb % base, base, c, printed);
+		ft_putnbr_hex(nb / base, base, c, printed);
+		ft_putnbr_hex(nb % base, base, c, printed);
 	}
 	else if (nb < 10)
 		ft_putchar(nb % base + 48, printed);

@@ -6,7 +6,7 @@
 #    By: makurz <makurz@student.42heilbronn.de>     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/04/02 18:12:43 by makurz            #+#    #+#              #
-#    Updated: 2023/04/03 14:23:10 by makurz           ###   ########.fr        #
+#    Updated: 2023/04/04 06:44:45 by makurz           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -24,7 +24,7 @@ ARFLAGS := -rcs
 RM := rm -f
 
 # Explicitly state all function names for the mandatory part
-SRCS :=	ft_printf.c ft_printf_utils_str.c ft_printf_utils_nbr.c
+SRCS :=	src/ft_printf.c src/ft_printf_utils_str.c src/ft_printf_utils_nbr.c
 
 # Substitute the suffix .c with .o for the object files
 OBJS := $(SRCS:%.c=%.o)

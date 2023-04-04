@@ -6,11 +6,11 @@
 /*   By: makurz <makurz@student.42heilbronn.de>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/02 16:36:53 by makurz            #+#    #+#             */
-/*   Updated: 2023/04/03 17:02:35 by makurz           ###   ########.fr       */
+/*   Updated: 2023/04/04 06:45:36 by makurz           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_printf.h"
+#include "../include/ft_printf.h"
 
 void	ft_parse_specifier(char c, va_list args, int *printed)
 {

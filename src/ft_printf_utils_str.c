@@ -6,11 +6,11 @@
 /*   By: makurz <makurz@student.42heilbronn.de>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/02 03:24:00 by makurz            #+#    #+#             */
-/*   Updated: 2023/04/03 15:51:31 by makurz           ###   ########.fr       */
+/*   Updated: 2023/04/04 06:46:03 by makurz           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_printf.h"
+#include "../include/ft_printf.h"
 
 size_t	ft_strlen(const char *s)
 {
