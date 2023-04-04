@@ -6,7 +6,7 @@
 /*   By: makurz <makurz@student.42heilbronn.de>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/04 15:07:12 by makurz            #+#    #+#             */
-/*   Updated: 2023/04/04 15:07:13 by makurz           ###   ########.fr       */
+/*   Updated: 2023/04/04 16:20:31 by makurz           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,4 +46,10 @@ Test(s_basic, basic_4)
 {
 	ft_printf("%s", "Loooooooooooooooooong string in here");
 	cr_expect_stdout_eq_str("Loooooooooooooooooong string in here");
+}
+
+Test(s_basic, basic_5)
+{
+	ft_printf("");
+	cr_expect_stdout_eq_str("");
 }

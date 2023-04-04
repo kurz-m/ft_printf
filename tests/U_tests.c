@@ -6,7 +6,7 @@
 /*   By: makurz <makurz@student.42heilbronn.de>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/04 15:07:21 by makurz            #+#    #+#             */
-/*   Updated: 2023/04/04 15:07:27 by makurz           ###   ########.fr       */
+/*   Updated: 2023/04/04 16:47:25 by makurz           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 #include <criterion/redirect.h>
 #include <unistd.h>
 #include <stdio.h>
+#include <limits.h>
 #include "../include/ft_printf.h"
 
 void setup(void)
@@ -22,68 +23,71 @@ void setup(void)
 	cr_redirect_stderr();
 }
 
-TestSuite(s_basic, .init=setup);
+TestSuite(u_test, .init=setup);
 
-Test(s_basic, basic_1)
+Test(u_test, u_basic_1)
 {
-	ft_printf("Hello %s", "makurz");
-	cr_expect_stdout_eq_str("Hello makurz");
-}
-
-Test(s_basic, basic_2)
-{
-	ft_printf("%s is %s", "This", "a test");
-	cr_expect_stdout_eq_str("This is a test");
-}
-
-Test(s_basic, basic_3)
-{
-	ft_printf("%s %s %s", "What", "is", "a test");
-	cr_expect_stdout_eq_str("What is a test");
-}
-
-Test(s_basic, basic_4)
-{
-	ft_printf("%s", "Loooooooooooooooooong string in here");
-	cr_expect_stdout_eq_str("Loooooooooooooooooong string in here");
-}
-
-TestSuite(c_basic, .init=setup);
-
-Test(c_basic, basic_1)
-{
-	ft_printf("%c is %c", 'a', 'b');
-	cr_expect_stdout_eq_str("a is b");
-}
-
-Test(c_basic, basic_2)
-{
-	ft_printf("%c%c%c%c%c", 'a', 'b', 'c', 'd', 'f');
-	cr_expect_stdout_eq_str("abcdf");
-}
-
-Test(c_basic, basic_3)
-{
-	ft_printf("%c%c%c%c", 'a', 't', 'f', 't');
-	cr_expect_stdout_eq_str("atft");
-}
-
-Test(c_basic, basic_4)
-{
-	ft_printf("this is only one char at the end %c", 'c');
-	cr_expect_stdout_eq_str("this is only one char at the end c");
-}
-
-TestSuite(p_test, .init=setup);
-
-Test(p_test, p_basic_1)
-{
-	char	buf[30];
-	bzero(buf, 30);
+	char	buf[70];
+	bzero(buf, 70);
 	setbuf(stderr, buf);
-	fprintf(stderr, "%p", NULL);
+	fprintf(stderr, "testing %u %u %u", (unsigned int) -34, 53, 53);
 	setbuf(stderr, NULL);
-	ft_printf("%p", NULL);
+	ft_printf("testing %u %u %u", (unsigned int) -34, 53, 53);
+	cr_expect_stdout_eq_str(buf);
+}
+
+Test(u_test, u_basic_2)
+{
+	char	buf[70];
+	bzero(buf, 70);
+	setbuf(stderr, buf);
+	fprintf(stderr, "%u", UINT_MAX);
+	setbuf(stderr, NULL);
+	ft_printf("%u", UINT_MAX);
+	cr_expect_stdout_eq_str(buf);
+}
+
+Test(u_test, u_basic_3)
+{
+	char	buf[70];
+	bzero(buf, 70);
+	setbuf(stderr, buf);
+	fprintf(stderr, "%u", (unsigned int) INT_MAX);
+	setbuf(stderr, NULL);
+	ft_printf("%u", (unsigned int) INT_MAX);
+	cr_expect_stdout_eq_str(buf);
+}
+
+Test(u_test, u_basic_4)
+{
+	char	buf[70];
+	bzero(buf, 70);
+	setbuf(stderr, buf);
+	fprintf(stderr, "%u%u%u%u", 0, 0, 0, 0);
+	setbuf(stderr, NULL);
+	ft_printf("%u%u%u%u", 0, 0, 0, 0);
+	cr_expect_stdout_eq_str(buf);
+}
+
+Test(u_test, u_basic_5)
+{
+	char	buf[70];
+	bzero(buf, 70);
+	setbuf(stderr, buf);
+	fprintf(stderr, "Ordinary string nb: %u", -532342);
+	setbuf(stderr, NULL);
+	ft_printf("Ordinary string nb: %u", -532342);
+	cr_expect_stdout_eq_str(buf);
+}
+
+Test(u_test, u_basic_6)
+{
+	char	buf[70];
+	bzero(buf, 70);
+	setbuf(stderr, buf);
+	fprintf(stderr, "%% %u from %% %u", 34241, -43241);
+	setbuf(stderr, NULL);
+	ft_printf("%% %u from %% %u", 34241, -43241);
 	cr_expect_stdout_eq_str(buf);
 }
 
