@@ -6,7 +6,7 @@
 /*   By: makurz <makurz@student.42heilbronn.de>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/02 03:24:00 by makurz            #+#    #+#             */
-/*   Updated: 2023/04/04 08:20:14 by makurz           ###   ########.fr       */
+/*   Updated: 2023/04/04 16:57:43 by makurz           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,8 +30,6 @@ void	ft_putnbr_base(long nb, int base, char c, int *printed)
 	}
 	else if (nb < 10)
 		ft_putchar(nb % base + 48, printed);
-	else
-		ft_putchar(nb % base + c - 10, printed);
 }
 
 void	ft_putnbr_hex(size_t nb, size_t base, char c, int *printed)

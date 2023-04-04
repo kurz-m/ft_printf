@@ -6,7 +6,7 @@
 /*   By: makurz <makurz@student.42heilbronn.de>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/04 15:07:21 by makurz            #+#    #+#             */
-/*   Updated: 2023/04/04 16:47:25 by makurz           ###   ########.fr       */
+/*   Updated: 2023/04/04 17:48:41 by makurz           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -90,4 +90,3 @@ Test(u_test, u_basic_6)
 	ft_printf("%% %u from %% %u", 34241, -43241);
 	cr_expect_stdout_eq_str(buf);
 }
-
