@@ -54,3 +54,5 @@ dkms.conf
 # inspiration
 ./inspiration/*
 pft/
+
+main*
