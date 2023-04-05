@@ -6,11 +6,12 @@
 /*   By: makurz <makurz@student.42heilbronn.de>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/02 16:36:53 by makurz            #+#    #+#             */
-/*   Updated: 2023/04/05 12:01:55 by makurz           ###   ########.fr       */
+/*   Updated: 2023/04/05 12:09:41 by makurz           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/ft_printf.h"
+#include <stdarg.h>
 
 // This function parses the specifier and calls the relevant function.
 void	ft_parse_specifier(char c, va_list args, int *printed)
@@ -45,6 +46,11 @@ int	ft_printf(const char *format, ...)
 		return (0);
 	while (format[++i])
 	{
+		if (format[i] == '%' && !format[i + 1])
+		{
+			va_end(args);
+			return (printed);
+		}
 		if (format[i] != '%')
 			ft_putchar(format[i], &printed);
 		else if (format[i++] == '%')
