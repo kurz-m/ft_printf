@@ -6,7 +6,7 @@
 /*   By: makurz <makurz@student.42heilbronn.de>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/04 15:07:35 by makurz            #+#    #+#             */
-/*   Updated: 2023/04/04 20:53:58 by makurz           ###   ########.fr       */
+/*   Updated: 2023/04/05 06:33:41 by makurz           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,25 +47,14 @@ Test(X_test, X_basic_2)
 	cr_expect_stdout_eq_str(buf);
 }
 
-Test(X_test, X_basic_3)
-{
-	char	buf[70];
-	bzero(buf, 70);
-	setbuf(stderr, buf);
-	fprintf(stderr, "%lX", ULONG_MAX);
-	setbuf(stderr, NULL);
-	ft_printf("%X", (unsigned int) ULONG_MAX);
-	cr_expect_stdout_eq_str(buf);
-}
-
 Test(X_test, X_basic_4)
 {
 	char	buf[70];
 	bzero(buf, 70);
 	setbuf(stderr, buf);
-	fprintf(stderr, "%X%X%lX%lX", INT_MAX, INT_MIN, LONG_MAX, LONG_MIN);
+	fprintf(stderr, "%X%X%X%X", INT_MAX, INT_MIN, UINT_MAX, UINT_MAX);
 	setbuf(stderr, NULL);
-	ft_printf("%X%X%X%X", INT_MAX, INT_MIN, LONG_MAX, LONG_MIN);
+	ft_printf("%X%X%X%X", INT_MAX, INT_MIN, UINT_MAX, UINT_MAX);
 	cr_expect_stdout_eq_str(buf);
 }
 TestSuite(x_test, .init=setup);
