@@ -6,7 +6,7 @@
 #    By: makurz <marvin@42.fr>                      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/04/04 14:11:05 by makurz            #+#    #+#              #
-#    Updated: 2023/04/04 17:10:43 by makurz           ###   ########.fr        #
+#    Updated: 2023/04/05 11:57:25 by makurz           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -14,7 +14,7 @@
 CC := cc
 
 # Specify the compiler flags
-CFLAGS := -Wall -Wextra -Werror
+# CFLAGS := -Wall -Wextra -Werror
 
 # Specify the library paths
 LDFLAGS := -lcriterion -L.. -lftprintf
@@ -31,6 +31,7 @@ EXECS := $(SRCS:%.c=%.out)
 
 # Create a strict rule on how to compile the object files
 %.out: %.c
+	# $(CC) $< -o $@ $(LDFLAGS)
 	$(CC) $(CFLAGS) $< -o $@ $(LDFLAGS)
 
 # create all the executable files

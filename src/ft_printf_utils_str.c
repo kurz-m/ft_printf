@@ -6,12 +6,13 @@
 /*   By: makurz <makurz@student.42heilbronn.de>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/02 03:24:00 by makurz            #+#    #+#             */
-/*   Updated: 2023/04/04 06:46:03 by makurz           ###   ########.fr       */
+/*   Updated: 2023/04/05 12:02:14 by makurz           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/ft_printf.h"
 
+// Returns the string length of the given string.
 size_t	ft_strlen(const char *s)
 {
 	size_t	i;
@@ -22,12 +23,16 @@ size_t	ft_strlen(const char *s)
 	return (i);
 }
 
+// Prints the given char and counts the 'printed' to keep
+// track of the printed characters.
 void	ft_putchar(char c, int *printed)
 {
 	write(1, &c, 1);
 	(*printed)++;
 }
 
+// Prints the given string and adds the printed chars 
+// to the 'printed' variable to keep track of the printed characters.
 void	ft_putstr(char *s, int *printed)
 {
 	if (s == NULL)

@@ -6,12 +6,13 @@
 /*   By: makurz <makurz@student.42heilbronn.de>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/02 03:24:00 by makurz            #+#    #+#             */
-/*   Updated: 2023/04/04 16:57:43 by makurz           ###   ########.fr       */
+/*   Updated: 2023/04/05 12:02:02 by makurz           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/ft_printf.h"
 
+// Takes the number and base and recursively prints out the number.
 void	ft_putnbr_base(long nb, int base, char c, int *printed)
 {
 	if (nb < 0)
@@ -19,10 +20,6 @@ void	ft_putnbr_base(long nb, int base, char c, int *printed)
 		ft_putchar('-', printed);
 		nb *= -1;
 	}
-	if (c == 'p' || c == 'x')
-		c = 'a';
-	else if (c == 'X')
-		c = 'A';
 	if (nb >= base)
 	{
 		ft_putnbr_base(nb / base, base, c, printed);
@@ -32,6 +29,7 @@ void	ft_putnbr_base(long nb, int base, char c, int *printed)
 		ft_putchar(nb % base + 48, printed);
 }
 
+// Takes the number and base and recursively prints out the number.
 void	ft_putnbr_hex(size_t nb, size_t base, char c, int *printed)
 {
 	if (c == 'p' || c == 'x')
@@ -49,6 +47,7 @@ void	ft_putnbr_hex(size_t nb, size_t base, char c, int *printed)
 		ft_putchar(nb % base + c - 10, printed);
 }
 
+// Prints '0x' in front of the then to hexadecimal converted number.
 void	ft_putptr(void *ptr, int *printed)
 {
 	size_t		ui;

@@ -6,12 +6,13 @@
 /*   By: makurz <makurz@student.42heilbronn.de>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/02 16:36:53 by makurz            #+#    #+#             */
-/*   Updated: 2023/04/04 06:45:36 by makurz           ###   ########.fr       */
+/*   Updated: 2023/04/05 12:01:55 by makurz           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/ft_printf.h"
 
+// This function parses the specifier and calls the relevant function.
 void	ft_parse_specifier(char c, va_list args, int *printed)
 {
 	if (c == 'c')
@@ -25,12 +26,13 @@ void	ft_parse_specifier(char c, va_list args, int *printed)
 	else if (c == 'u')
 		ft_putnbr_base((long) va_arg(args, unsigned int), 10, c, printed);
 	else if (c == 'x' || c == 'X')
-		ft_putnbr_base(va_arg(args, unsigned int), 16, c, printed);
+		ft_putnbr_hex(va_arg(args, unsigned int), 16, c, printed);
 	else if (c == '%')
 		ft_putchar('%', printed);
 }
 
-int	ft_printf(const char *s, ...)
+// Main function which walks through the given string.
+int	ft_printf(const char *format, ...)
 {
 	int		printed;
 	int		i;
@@ -38,15 +40,15 @@ int	ft_printf(const char *s, ...)
 
 	printed = 0;
 	i = -1;
-	va_start(args, s);
-	if (!s)
+	va_start(args, format);
+	if (!format)
 		return (0);
-	while (s[++i])
+	while (format[++i])
 	{
-		if (s[i] != '%')
-			ft_putchar(s[i], &printed);
-		else if (s[i++] == '%')
-			ft_parse_specifier(s[i], args, &printed);
+		if (format[i] != '%')
+			ft_putchar(format[i], &printed);
+		else if (format[i++] == '%')
+			ft_parse_specifier(format[i], args, &printed);
 	}
 	va_end(args);
 	return (printed);

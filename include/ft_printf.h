@@ -6,7 +6,7 @@
 /*   By: makurz <makurz@student.42heilbronn.de>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/02 16:45:06 by makurz            #+#    #+#             */
-/*   Updated: 2023/04/03 14:39:28 by makurz           ###   ########.fr       */
+/*   Updated: 2023/04/05 12:01:43 by makurz           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,9 +16,8 @@
 # include <stdarg.h>
 # include <stddef.h>
 # include <unistd.h>
-# include <stdlib.h>
 
-int		ft_printf(const char *s, ...);
+int		ft_printf(const char *format, ...);
 void	ft_putchar(char c, int *printed);
 void	ft_putstr(char *s, int *printed);
 size_t	ft_strlen(const char *s);
