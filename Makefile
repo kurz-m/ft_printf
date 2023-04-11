@@ -6,7 +6,7 @@
 #    By: makurz <makurz@student.42heilbronn.de>     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/04/02 18:12:43 by makurz            #+#    #+#              #
-#    Updated: 2023/04/04 06:44:45 by makurz           ###   ########.fr        #
+#    Updated: 2023/04/11 13:23:22 by makurz           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -53,4 +53,3 @@ all: $(NAME)
 
 # Tell the Makefile that all those commands are actual commands and not files
 .PHONY: all clean fclean re
-
