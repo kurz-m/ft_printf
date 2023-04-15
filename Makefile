@@ -1,17 +1,12 @@
 # **************************************************************************** #
 #                                                                              #
 #                                                         :::      ::::::::    #
-#    Makefile_new                                       :+:      :+:    :+:    #
+#    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: makurz <makurz@student.42heilbronn.de>     +#+  +:+       +#+         #
+#    By: makurz <dumba@42.fr>                       +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
-<<<<<<< Updated upstream
-#    Created: 2023/04/02 18:12:43 by makurz            #+#    #+#              #
-#    Updated: 2023/04/11 13:23:22 by makurz           ###   ########.fr        #
-=======
-#    Created: 2023/03/16 09:39:14 by makurz            #+#    #+#              #
-#    Updated: 2023/04/15 19:27:39 by makurz           ###   ########.fr        #
->>>>>>> Stashed changes
+#    Created: 2023/04/15 20:04:51 by makurz            #+#    #+#              #
+#    Updated: 2023/04/15 20:05:21 by makurz           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -133,10 +128,6 @@ $(OBJ_DIR_DEBUG)/%.o: ft_%.c
 	@printf $(UP)$(CUT)
 
 # Tell the Makefile that all those commands are actual commands and not files
-<<<<<<< Updated upstream
-.PHONY: all clean fclean re
-=======
 .PHONY: all clean fclean debug re
 
 -include $(OBJ:%.o=%.d)
->>>>>>> Stashed changes
