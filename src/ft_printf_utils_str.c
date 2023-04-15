@@ -6,11 +6,11 @@
 /*   By: makurz <makurz@student.42heilbronn.de>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/02 03:24:00 by makurz            #+#    #+#             */
-/*   Updated: 2023/04/05 12:02:14 by makurz           ###   ########.fr       */
+/*   Updated: 2023/04/15 19:28:42 by makurz           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../include/ft_printf.h"
+#include "../header/ft_printf.h"
 
 // Returns the string length of the given string.
 size_t	ft_strlen(const char *s)

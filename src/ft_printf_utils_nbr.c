@@ -6,11 +6,11 @@
 /*   By: makurz <makurz@student.42heilbronn.de>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/02 03:24:00 by makurz            #+#    #+#             */
-/*   Updated: 2023/04/05 12:02:02 by makurz           ###   ########.fr       */
+/*   Updated: 2023/04/15 19:28:35 by makurz           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../include/ft_printf.h"
+#include "../header/ft_printf.h"
 
 // Takes the number and base and recursively prints out the number.
 void	ft_putnbr_base(long nb, int base, char c, int *printed)

@@ -1,55 +1,142 @@
 # **************************************************************************** #
 #                                                                              #
 #                                                         :::      ::::::::    #
-#    Makefile                                           :+:      :+:    :+:    #
+#    Makefile_new                                       :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
 #    By: makurz <makurz@student.42heilbronn.de>     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
+<<<<<<< Updated upstream
 #    Created: 2023/04/02 18:12:43 by makurz            #+#    #+#              #
 #    Updated: 2023/04/11 13:23:22 by makurz           ###   ########.fr        #
+=======
+#    Created: 2023/03/16 09:39:14 by makurz            #+#    #+#              #
+#    Updated: 2023/04/15 19:27:39 by makurz           ###   ########.fr        #
+>>>>>>> Stashed changes
 #                                                                              #
 # **************************************************************************** #
 
-# Name of the library
+# Define the name of the library
 NAME := libftprintf.a
 
-# Define the compiler the Makefile should use
-CC := cc
+# Set compiler and debugger according to OS
+UNAME := $(shell uname)
+ifeq ($(UNAME), Linux)
+	CC := gcc
+	DB := gdb
+	CFLAGS ?= -Wall -Wextra -Werror -fsanitize=leak
+else ifeq ($(UNAME), Darwin)
+	CC := clang
+	DB := lldb
+	CFLAGS ?= -Wall -Wextra -Werror
+else
+	$(error Unsupported operating system: $(UNAME))
+endif
 
 # Add the neccessary flags for compiling 
-CFLAGS := -Wall -Wextra -Werror
+LDFLAGS ?=
 ARFLAGS := -rcs
 
 # Add the remove command
 RM := rm -f
 
+# Add paths for the source files
+VPATH = src/
+
 # Explicitly state all function names for the mandatory part
-SRCS :=	src/ft_printf.c src/ft_printf_utils_str.c src/ft_printf_utils_nbr.c
+SRCS :=	ft_printf.c ft_printf_utils_str.c ft_printf_utils_nbr.c
+
+# Define a directory for object files
+OBJ_DIR := ./_obj
+OBJ_DIR_DEBUG := ./_obj_debug
 
 # Substitute the suffix .c with .o for the object files
-OBJS := $(SRCS:%.c=%.o)
+OBJS := $(addprefix $(OBJ_DIR)/, $(SRCS:ft_%.c=%.o))
 
-# Main rule to compile the mandatory part
+# Specify folder for header file
+INC := -I ./header
+
+# Create object files for debugging
+OBJS_DEBUG := $(addprefix $(OBJ_DIR_DEBUG)/, $(SRCS:ft_%.c=%.o))
+
+# Color codes
+Y := "\033[33m"
+R := "\033[31m"
+G := "\033[32m"
+X := "\033[0m"
+UP := "\033[A"
+CUT := "\033[K"
+
+# Main rule to compile Libft
+all: $(NAME)
+	@printf "\n"
+	@echo $(G)"                       **"
+	@echo $(G)"                      /**"
+	@echo $(G)"  **********   ******  /**  ** **   ** ****** ******"
+	@echo $(G)" //**//**//** //////** /** ** /**  /**//**//*////**"
+	@echo $(G)"  /** /** /**  ******* /****  /**  /** /** /    **"
+	@echo $(G)"  /** /** /** **////** /**/** /**  /** /**     **"
+	@echo $(G)"  *** /** /**//********/**//**//******/***    ******"
+	@echo $(G)" ///  //  //  //////// //  //  ////// ///    //////"$(X)
+	@printf "\n\n"
+
 $(NAME): $(OBJS)
-	@ar $(ARFLAGS) $@ $^
+	@echo $(Y)Compiling [$(NAME)]...$(X)
+	@ar $(ARFLAGS) $(NAME) $(OBJS)
+	@printf $(UP)$(CUT)
+	@echo $(G)Finished"  "[$(NAME)]...$(X)
 
 # Create a static rule for compiling from source to object file
-%.o: %.c
-	$(CC) -c $(CFLAGS) $< -o $@
+$(OBJ_DIR)/%.o: ft_%.c
+	@echo $(Y)Compiling [$@]...$(X)
+	@mkdir -p _obj
+	@$(CC) $(CFLAGS) -MMD -MP -c $< $(INC) -o $@
+	@printf $(UP)$(CUT)
 
-# Only clean the object files
+# Cleans only the object files if they exist
 clean:
-	@$(RM) $(OBJS) $(BONUS_OBJS)
+	@if [ -d "${OBJ_DIR}" ]; then \
+		echo $(R)Cleaning"  "[$(OBJ_DIR)]...$(X); \
+		rm -r ${OBJ_DIR}; \
+		echo $(G)Cleaned!$(X); \
+	fi
 
-# Additionally removes the library
-fclean: clean
-	@$(RM) $(NAME)
+# Cleans the debug files if ran with -g flag
+clean_debug:
+	@if [ -d "${OBJ_DIR_DEBUG}" ]; then \
+		echo $(R)Cleaning"  "[$(OBJ_DIR_DEBUG)]...$(X); \
+		rm -r ${OBJ_DIR_DEBUG}; \
+		echo $(G)Cleaned!$(X); \
+	fi
+
+# Cleans also the library
+fclean: clean clean_debug
+	@if [ -f "$(NAME)" ]; then \
+		echo $(R)Cleaning"  "[$(NAME)]...$(X); \
+		rm -r $(NAME); \
+		echo $(G)Cleaned!$(X); \
+	fi
 
 # Cleans all object files and also the library and newly create the library
 re: fclean all
 
-# Creates the library from the mandatory and bonus part
-all: $(NAME)
+# Runs the compiler with the debugger flag
+debug: $(OBJS_DEBUG)
+	$(CC) $(CFLAGS) -g $^ $(LIB) -o debug
+	$(DB) debug
+
+
+# Rule for the debug compilation
+$(OBJ_DIR_DEBUG)/%.o: ft_%.c
+	@echo $(Y)Compiling [$@]...$(X)
+	@mkdir -p _obj_debug
+	@$(CC) $(CFLAGS) -g -MMD -MP -c $< $(INC) -o $@
+	@printf $(UP)$(CUT)
 
 # Tell the Makefile that all those commands are actual commands and not files
+<<<<<<< Updated upstream
 .PHONY: all clean fclean re
+=======
+.PHONY: all clean fclean debug re
+
+-include $(OBJ:%.o=%.d)
+>>>>>>> Stashed changes

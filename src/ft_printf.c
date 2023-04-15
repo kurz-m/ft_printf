@@ -6,11 +6,11 @@
 /*   By: makurz <makurz@student.42heilbronn.de>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/02 16:36:53 by makurz            #+#    #+#             */
-/*   Updated: 2023/04/06 08:25:12 by makurz           ###   ########.fr       */
+/*   Updated: 2023/04/15 19:28:29 by makurz           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../include/ft_printf.h"
+#include "../header/ft_printf.h"
 #include <stdarg.h>
 
 // This function parses the specifier and calls the relevant function.
