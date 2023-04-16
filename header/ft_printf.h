@@ -6,7 +6,7 @@
 /*   By: makurz <makurz@student.42heilbronn.de>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/02 16:45:06 by makurz            #+#    #+#             */
-/*   Updated: 2023/04/05 12:01:43 by makurz           ###   ########.fr       */
+/*   Updated: 2023/04/16 15:34:18 by makurz           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,7 @@
 # include <stdarg.h>
 # include <stddef.h>
 # include <unistd.h>
+# include <errno.h>
 
 int		ft_printf(const char *format, ...);
 void	ft_putchar(char c, int *printed);

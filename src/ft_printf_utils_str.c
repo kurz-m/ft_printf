@@ -6,7 +6,7 @@
 /*   By: makurz <makurz@student.42heilbronn.de>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/02 03:24:00 by makurz            #+#    #+#             */
-/*   Updated: 2023/04/15 19:28:42 by makurz           ###   ########.fr       */
+/*   Updated: 2023/04/16 15:38:45 by makurz           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,11 @@ size_t	ft_strlen(const char *s)
 // track of the printed characters.
 void	ft_putchar(char c, int *printed)
 {
-	write(1, &c, 1);
+	ssize_t		exit_code;
+
+	exit_code = write(1, &c, 1);
+	if (exit_code == -1)
+		_exit(-1);
 	(*printed)++;
 }
 

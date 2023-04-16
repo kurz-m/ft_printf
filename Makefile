@@ -6,7 +6,7 @@
 #    By: makurz <dumba@42.fr>                       +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/04/15 20:04:51 by makurz            #+#    #+#              #
-#    Updated: 2023/04/15 20:05:21 by makurz           ###   ########.fr        #
+#    Updated: 2023/04/16 15:37:48 by makurz           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -18,7 +18,7 @@ UNAME := $(shell uname)
 ifeq ($(UNAME), Linux)
 	CC := gcc
 	DB := gdb
-	CFLAGS ?= -Wall -Wextra -Werror -fsanitize=leak
+	CFLAGS ?= -Wall -Wextra -Werror
 else ifeq ($(UNAME), Darwin)
 	CC := clang
 	DB := lldb
@@ -27,7 +27,7 @@ else
 	$(error Unsupported operating system: $(UNAME))
 endif
 
-# Add the neccessary flags for compiling 
+# Add the necessary flags for compiling 
 LDFLAGS ?=
 ARFLAGS := -rcs
 
