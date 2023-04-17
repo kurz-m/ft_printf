@@ -6,7 +6,7 @@
 /*   By: makurz <makurz@student.42heilbronn.de>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/04 15:30:08 by makurz            #+#    #+#             */
-/*   Updated: 2023/04/06 09:34:20 by makurz           ###   ########.fr       */
+/*   Updated: 2023/04/11 15:49:06 by makurz           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,6 +72,17 @@ Test(perc_test, p_basic_7)
 }
 
 Test(perc_test, p_basic_8)
+{
+	char	buf[70];
+	bzero(buf, 70);
+	setbuf(stderr, buf);
+	fprintf(stderr, "    %K  %   ");
+	setbuf(stderr, NULL);
+	ft_printf("    %K  %   ");
+	cr_expect_stdout_eq_str(buf);
+}
+
+Test(perc_test, p_basic_9)
 {
 	char	buf[70];
 	bzero(buf, 70);
