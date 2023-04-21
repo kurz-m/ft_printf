@@ -6,7 +6,7 @@
 /*   By: makurz <makurz@student.42heilbronn.de>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/02 16:36:53 by makurz            #+#    #+#             */
-/*   Updated: 2023/04/21 11:29:39 by makurz           ###   ########.fr       */
+/*   Updated: 2023/04/21 16:05:02 by makurz           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,8 +49,8 @@ int	ft_printf(const char *format, ...)
 	i = -1;
 	check = TRUE;
 	va_start(args, format);
-	if (!format)
-		return (0);
+	if (format == NULL)
+		return (-1);
 	while (format[++i])
 	{
 		if (format[i] == '%' && !format[i + 1])

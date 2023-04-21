@@ -6,7 +6,7 @@
 /*   By: makurz <makurz@student.42heilbronn.de>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/02 03:24:00 by makurz            #+#    #+#             */
-/*   Updated: 2023/04/21 11:30:40 by makurz           ###   ########.fr       */
+/*   Updated: 2023/04/21 16:05:56 by makurz           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,14 +47,14 @@ int	f_putstr(char *s, int *printed)
 		check = write(1, "(null)", 6);
 		if (check == -1)
 			return (FALSE);
-		(*printed) += 6;
+		(*printed) += check;
 	}
 	else
 	{
 		check = write(1, s, ft_strlen(s));
 		if (check == -1)
 			return (FALSE);
-		(*printed) += ft_strlen(s);
+		(*printed) += check;
 	}
 	return (TRUE);
 }
