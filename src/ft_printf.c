@@ -6,41 +6,48 @@
 /*   By: makurz <makurz@student.42heilbronn.de>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/02 16:36:53 by makurz            #+#    #+#             */
-/*   Updated: 2023/04/15 19:28:29 by makurz           ###   ########.fr       */
+/*   Updated: 2023/04/21 11:29:39 by makurz           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../header/ft_printf.h"
-#include <stdarg.h>
 
 // This function parses the specifier and calls the relevant function.
-void	ft_parse_specifier(char c, va_list args, int *printed)
+int	ft_parse_specifier(char c, va_list args, int *printed)
 {
+	int		check;
+
+	check = TRUE;
 	if (c == 'c')
-		ft_putchar(va_arg(args, int), printed);
+		check &= f_putchar(va_arg(args, int), printed);
 	else if (c == 's')
-		ft_putstr(va_arg(args, char *), printed);
+		check &= f_putstr(va_arg(args, char *), printed);
 	else if (c == 'p')
-		ft_putptr(va_arg(args, void *), printed);
+		check &= ft_putptr(va_arg(args, void *), printed);
 	else if (c == 'i' || c == 'd')
-		ft_putnbr_base((long) va_arg(args, int), 10, c, printed);
+		check &= ft_putnbr((long) va_arg(args, int), printed);
 	else if (c == 'u')
-		ft_putnbr_base((long) va_arg(args, unsigned int), 10, c, printed);
-	else if (c == 'x' || c == 'X')
-		ft_putnbr_hex(va_arg(args, unsigned int), 16, c, printed);
+		check &= ft_putunbr(va_arg(args, unsigned int), printed);
+	else if (c == 'x')
+		check &= ft_putnbrbase(va_arg(args, unsigned int), LHEX, printed);
+	else if (c == 'X')
+		check &= ft_putnbrbase(va_arg(args, unsigned int), UHEX, printed);
 	else if (c == '%')
-		ft_putchar('%', printed);
+		check &= f_putchar('%', printed);
+	return (check);
 }
 
 // Main function which walks through the given string.
 int	ft_printf(const char *format, ...)
 {
 	int		printed;
+	int		check;
 	int		i;
 	va_list	args;
 
 	printed = 0;
 	i = -1;
+	check = TRUE;
 	va_start(args, format);
 	if (!format)
 		return (0);
@@ -49,9 +56,11 @@ int	ft_printf(const char *format, ...)
 		if (format[i] == '%' && !format[i + 1])
 			break ;
 		if (format[i] != '%')
-			ft_putchar(format[i], &printed);
+			check &= f_putchar(format[i], &printed);
 		else if (format[i++] == '%')
-			ft_parse_specifier(format[i], args, &printed);
+			check &= ft_parse_specifier(format[i], args, &printed);
+		if (check == FALSE)
+			return (-1);
 	}
 	va_end(args);
 	return (printed);

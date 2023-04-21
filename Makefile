@@ -6,7 +6,7 @@
 #    By: makurz <dumba@42.fr>                       +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/04/15 20:04:51 by makurz            #+#    #+#              #
-#    Updated: 2023/04/16 15:37:48 by makurz           ###   ########.fr        #
+#    Updated: 2023/04/21 08:57:02 by makurz           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -20,7 +20,7 @@ ifeq ($(UNAME), Linux)
 	DB := gdb
 	CFLAGS ?= -Wall -Wextra -Werror
 else ifeq ($(UNAME), Darwin)
-	CC := clang
+	CC := cc
 	DB := lldb
 	CFLAGS ?= -Wall -Wextra -Werror
 else
@@ -129,5 +129,3 @@ $(OBJ_DIR_DEBUG)/%.o: ft_%.c
 
 # Tell the Makefile that all those commands are actual commands and not files
 .PHONY: all clean fclean debug re
-
--include $(OBJ:%.o=%.d)

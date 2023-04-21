@@ -6,58 +6,63 @@
 /*   By: makurz <makurz@student.42heilbronn.de>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/02 03:24:00 by makurz            #+#    #+#             */
-/*   Updated: 2023/04/15 19:28:35 by makurz           ###   ########.fr       */
+/*   Updated: 2023/04/21 11:30:30 by makurz           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../header/ft_printf.h"
 
 // Takes the number and base and recursively prints out the number.
-void	ft_putnbr_base(long nb, int base, char c, int *printed)
+int	ft_putnbrbase(size_t nb, char *base, int *printed)
 {
-	if (nb < 0)
+	size_t	size;
+	int		check;
+
+	check = TRUE;
+	size = ft_strlen(base);
+	if (nb >= size)
 	{
-		ft_putchar('-', printed);
-		nb *= -1;
+		check &= ft_putnbrbase(nb / size, base, printed);
+		check &= ft_putnbrbase(nb % size, base, printed);
 	}
-	if (nb >= base)
-	{
-		ft_putnbr_base(nb / base, base, c, printed);
-		ft_putnbr_base(nb % base, base, c, printed);
-	}
-	else if (nb < 10)
-		ft_putchar(nb % base + 48, printed);
+	else if (nb < size)
+		check &= f_putchar(base[nb], printed);
+	return (check);
 }
 
-// Takes the number and base and recursively prints out the number.
-void	ft_putnbr_hex(size_t nb, size_t base, char c, int *printed)
+int	ft_putnbr(long nbr, int *printed)
 {
-	if (c == 'p' || c == 'x')
-		c = 'a';
-	else if (c == 'X')
-		c = 'A';
-	if (nb >= base)
+	int		check;
+
+	check = TRUE;
+	if (nbr < 0)
 	{
-		ft_putnbr_hex(nb / base, base, c, printed);
-		ft_putnbr_hex(nb % base, base, c, printed);
+		check &= f_putchar('-', printed);
+		nbr *= -1;
 	}
-	else if (nb < 10)
-		ft_putchar(nb % base + 48, printed);
-	else
-		ft_putchar(nb % base + c - 10, printed);
+	check &= ft_putnbrbase(nbr, DEC, printed);
+	return (check);
+}
+
+int	ft_putunbr(unsigned int nbr, int *printed)
+{
+	return (ft_putnbrbase(nbr, DEC, printed));
 }
 
 // Prints '0x' in front of the then to hexadecimal converted number.
-void	ft_putptr(void *ptr, int *printed)
+int	ft_putptr(void *ptr, int *printed)
 {
 	size_t		ui;
+	int			check;
 
+	check = TRUE;
 	if (ptr != NULL)
 	{
 		ui = (size_t) ptr;
-		ft_putstr("0x", printed);
-		ft_putnbr_hex(ui, 16, 'p', printed);
+		check &= f_putstr("0x", printed);
+		check &= ft_putnbrbase(ui, LHEX, printed);
 	}
 	else
-		ft_putstr("0x0", printed);
+		check &= f_putstr("0x0", printed);
+	return (check);
 }
